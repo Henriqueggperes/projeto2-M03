@@ -27,6 +27,6 @@ const persoSchema = new mongoose.Schema({
   },
 });
 
-const Personagem = mongoose.model('items',persoSchema)
+const characters = mongoose.model('items',persoSchema)
 
-module.exports = Personagem;
+module.exports = characters;

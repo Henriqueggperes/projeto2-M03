@@ -13,23 +13,16 @@ const findByIdCharacterService = async (idParam) => {
   const characters = await personagens.findById(idParam)
   return characters;
 };
-const createCharacterService = (newCharacter) => {
-  const newId = characters.length + 1;
-  newCharacter.id = newId;
-  characters.push(newCharacter);
-  return newCharacter;
+const createCharacterService = async (newCharacter) => {
+  const  createdCharacter = await personagens.create(newCharacter);
+  return createdCharacter;
 };
-const updateCharacterService = (idParam, personagemEdit) => {
-  personagemEdit["id"] = idParam;
-  const personagemIndex = characters.findIndex(
-    (character) => character.id == idParam
-  );
-  characters[personagemIndex] = personagemEdit;
-  return personagemEdit;
+const updateCharacterService = async (idParam, editCharacter) => {
+  const updatedCharacter = await personagens.findByIdAndUpdate(idParam,editCharacter)
+  return updatedCharacter;
 };
-const deleteCharacterService = (idParam) => {
-  const personagemIndex = characters.findIndex((character) => character.id ==idParam);
-  return characters.splice(personagemIndex,1);
+const deleteCharacterService = async (idParam) => {
+  return await personagens.findByIdAndDelete(idParam);
 };
 
 module.exports = {
